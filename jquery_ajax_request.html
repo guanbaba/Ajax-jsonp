@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jquery load test</title>
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="ajax_function.js"></script>
+</head>
+<body>
+	<input type="text" class="search" placeholder="管世昱">
+	<input type="button" class="btn" value="load">
+	<div class="content"></div>
+	<script type="text/javascript">
+		$(function(){
+			$(".btn").click(function(){
+				$.ajax({
+					url:"jquery_ajax_response.php",
+					type:"GET",
+					data:{
+						search:$(".search").val(),
+					},
+					success:function(re){
+						$(".content").text(re);
+					},
+				})
+			});
+		});
+	</script>
+</body>
+</html>

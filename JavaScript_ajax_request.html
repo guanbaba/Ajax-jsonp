@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX TEST</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<label>请输入要搜索的内容：</label>
+<input id="search-text" type="text" name="search">
+<input id="submit-btn" type="button" name="submit" value="提交">
+<p><span id="result"></span></p>
+</body>
+<script type="text/javascript">
+	var result=document.getElementById("result");
+	var searchText=document.getElementById("search-text");
+	var submitBtn=document.getElementById("submit-btn");
+	submitBtn.onclick=function(){
+		var text=searchText.value;
+		var name=searchText.getAttribute("name");
+		var XHR=getXHRObject();
+		XHR.onreadystatechange=function(){
+			if(XHR.readyState==4&&XHR.status=="200")
+				// alert(JSON.parse(XHR.responseText));
+				var responseStr=JSON.parse(XHR.responseText).join(",");
+				result.innerHTML=responseStr;
+		}
+		XHR.open("GET","search.php?"+name+"="+text,true);
+		XHR.send(null);
+	}
+	function getXHRObject(){
+		var XHR=null;
+		if(window.XMLHttpRequest){
+			XHR=new XMLHttpRequest();
+		}
+		else{
+			XHR=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		return XHR;
+	}
+</script>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery load test</title>
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<input type="button" class="btn" value="load">
+	<div class="content"></div>
+	<script type="text/javascript">
+		$(function(){
+			$(".btn").click(function(){
+				$(".content").load("jquery_load_response.html",function(){
+					alert("Load completed!");
+				});
+			});
+		});
+	</script>
+</body>
+</html>
